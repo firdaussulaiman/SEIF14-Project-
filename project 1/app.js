@@ -20,7 +20,6 @@ function randomSquare() {
 
   hitPosition = randomSquare.id; //assigns the id of the random square to the hitPosition variable
 }
-
 squares.forEach((square) => {
   //forEach is a function that loops through all the squares
   square.addEventListener("mousedown", () => {
@@ -30,6 +29,20 @@ squares.forEach((square) => {
       hitPosition = null;
     }
   });
+});
+
+//function on start button
+startbtn.addEventListener("click", () => {
+  if (timerId) {
+    clearInterval(timerId);
+  }
+
+  timerId = setInterval(moveMole, 1000);
+  countDownTimerId = setInterval(countDown, 1000);
+  currentTime = 60;
+  result = 0;
+  score.textContent = result;
+  timeLeft.textContent = currentTime;
 });
 
 function moveMole() {
@@ -44,8 +57,17 @@ function countDown() {
   timeLeft.textContent = currentTime;
 
   if (currentTime == 0) {
+  } else if (currentTime <= 10) {
+    timeLeft.style.color = "red";
+  } else if (currentTime <= 20) {
+    timeLeft.style.color = "yellow";
+  } else if (currentTime <= 30) {
+    timeLeft.style.color = "green";
+  } else if (currentTime == 0) {
     clearInterval(countDownTimerId);
     clearInterval(timerId);
+    //reset the timing
+    currentTime = 60;
     alert("GAME OVER! Your final score is " + result);
   }
 }
