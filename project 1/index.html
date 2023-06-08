@@ -5,20 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Whack A Mole</title>
-    <link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="styles.css">
+  
 </head>
 <body>
+    <div class="container">
     <h2>Score</h2>
     <h2 id = "score">0</h2>
-    //score starts from 0(LeaderBoard)
+    <!--score starts from 0(LeaderBoard)-->
     <h2>time Left</h2>
-    <h2 id = "time-left">0:60</h2>
-    //60 seconds for the game
-    
-    //create a so called grid
+    <h2 id = "time-left">60</h2>
+    <!--60 seconds for the game -->
+    <button id = "start">Start</button>
+    <!--start button -->
+    <!-- create a so called grid -->
     <div class="grid"></div>
-    //create a square(9) in the grid
+    <!-- create a square(9) in the grid --> 
     <div class="square" id="1"></div>
     <div class="square" id="2"></div>
     <div class="square" id="3"></div>
@@ -29,9 +31,7 @@
     <div class="square" id="8"></div>
     <div class="square" id="9"></div>
     </div>
-</body>
-  
-    
-<script src="script.js"></script>
+</div>
+    <script src="app.js"></script>
 </body>
 </html>
