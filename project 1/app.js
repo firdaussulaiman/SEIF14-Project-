@@ -49,7 +49,7 @@ countDown = () => {
     timeLeft.style.color = "green";
   }
 
-  if (currentTime == 0) {
+  if (currentTime === 0) {
     clearInterval(countDownTimerId);
     clearInterval(timerId);
     endGame();
