@@ -35,6 +35,12 @@ removeMoleClass = (clickedSquare) => {
 
 moveMole = () => {
   timerId = setInterval(randomSquare, 5000);
+  if (currentTime === 0) {
+    clearInterval(timerId);
+    return;
+  }
+
+  randomSquare();
 };
 
 countDown = () => {

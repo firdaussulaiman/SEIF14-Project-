@@ -1,7 +1,7 @@
 h1 {
     text-align: center;
     font-size: 50px;
-    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-family: 'Kablammo', cursive;
   }
   
   body {
@@ -10,9 +10,10 @@ h1 {
   }
   
   .grid {
-    width: 100vw;
-    height: 100vh;
-    display: grid;
+    width: 100vw; /* 100% of the viewport width */
+    height: 100vh;/* 100% of the viewport height */
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-content: center;
     justify-items: center;
@@ -26,6 +27,7 @@ h1 {
     background-size: cover;
     height: 200px;
     width: 200px;
+    border-radius: 100px;
     border: solid black 1px;
     background-size: cover;
     border-spacing: 10px;
@@ -39,11 +41,10 @@ h1 {
   }
   
   .scoreBoard {
-    background-image: url("Cartoon_grass.avif");
+    background-image: url("scoreBoard_background.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    width: 30%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -52,8 +53,14 @@ h1 {
     padding: 10px;
     flex-direction: column;
     margin-left: auto;
+    order: 2;
+ 
   }
   .container {
     display: flex;
+    flex-direction: row;
 }
   
+
+/*In the .scoreBoard selector, we added the margin-left: auto; property. This pushes the .scoreBoard element to the right by setting its left margin to "auto," allowing it to occupy the available space on the left side of the container.
+In the .container selector, we set the flex-direction property to row. This ensures that the child elements within the container are displayed in a row format.*/
