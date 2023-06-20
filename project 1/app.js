@@ -1,101 +1,123 @@
-const squares = document.querySelectorAll(".square");
-const mole = document.querySelector(".mole");
-const timeLeft = document.querySelector("#time-left");
-const score = document.querySelector("#score");
+const squares = document.querySelectorAll(".square"); //select all the squares
+const timeLeft = document.querySelector("#time-left"); //select the time left
+const score = document.querySelector("#score"); //select the score
+const startbtn = document.getElementById("startbtn");
 
-let result = 0;
-let hitPosition;
-let currentTime = 60;
-let timerId = null;
-let countDownTimerId = null;
+let result = 0; //set the initial score to 0
+let hitPosition; //set the initial hit position to null
+let currentTime = 60; //set the initial time left to 60 seconds
+let timerId = null; //set the initial timer id to null
+let countDownTimerId = null; //set the initial countdown timer id to null
+let moleIntervalIds = []; //array to store the mole interval IDs
 
-randomSquare = () => {
+startGame = () => {
+  //function to start the game
+  if (timerId) {
+    //if timer id is not null, clear the timer id
+    clearInterval(timerId); //clear the timer id
+  }
+
+  countDownTimerId = setInterval(countDown, 1000); //set the countdown timer id to the countDown function
+  currentTime = 60; //set the initial time left to 60 seconds
+  result = 0; //set the initial score to 0
+  score.textContent = result; //set the score to 0
+  timeLeft.textContent = currentTime; //set the time left to 60 seconds
+  timeLeft.style.color = "white"; //set the time left color to white
+
+  startMoleMovement(); //start moving the mole
+
+  // Remove the mole class and event listener from all squares initially
   squares.forEach((square) => {
     square.removeEventListener("mousedown", removeMoleClass);
     square.classList.remove("mole");
   });
 
-  let randomSquareIndex = Math.floor(Math.random() * 9);
-  let randomSquare = squares[randomSquareIndex];
-  randomSquare.classList.add("mole");
-  randomSquare.addEventListener("mousedown", (event) =>
-    removeMoleClass(event.target)
+  hitPosition = null; //set the hit position to null
+};
+
+randomSquare = () => {
+  //function to generate random square
+  squares.forEach((square) => {
+    //for each square, remove the mole class and event listener
+    square.removeEventListener("mousedown", removeMoleClass); //remove the event listener
+    square.classList.remove("mole"); //remove the mole class
+  });
+
+  let randomSquareIndex = Math.floor(Math.random() * 9); //generate random number from 0 to 8 (9 squares)
+  let randomSquare = squares[randomSquareIndex]; //select the random square from the squares array
+  randomSquare.classList.add("mole"); //add the mole class to the random square
+  randomSquare.addEventListener(
+    "mousedown",
+    (
+      event //add the event listener to the random square to remove the mole class
+    ) => removeMoleClass(event.target) //remove the mole class
   );
 
-  hitPosition = randomSquare.id;
+  hitPosition = randomSquare.id; //set the hit position to the random square id
 };
 
+// Function to remove mole class
 removeMoleClass = (clickedSquare) => {
+  //function to remove the mole class
   if (clickedSquare.id == hitPosition) {
-    result++;
-    score.textContent = result;
-    hitPosition = null;
+    //if the clicked square id is equal to the hit position
+    result++; //increase the result by 1
+    score.textContent = result; //set the score to the result
+    hitPosition = null; //set the hit position to null
   }
 };
 
-moveMole = () => {
-  timerId = setInterval(randomSquare, 5000);
-  if (currentTime === 0) {
-    clearInterval(timerId);
-    return;
-  }
-
-  randomSquare();
+startMoleMovement = () => {
+  //function to start the mole movement
+  moleIntervalIds.push(setInterval(randomSquare, 1000)); // push the interval ID to the moleIntervalIds array
 };
 
 countDown = () => {
-  currentTime--;
-  timeLeft.textContent = currentTime;
+  //function to count down the time left
+  currentTime--; //decrease the current time by 1
+  timeLeft.textContent = currentTime; //set the time left to the current time
 
   if (currentTime <= 10) {
-    timeLeft.style.color = "red";
+    //if the current time is less than or equal to 10 seconds
+    timeLeft.style.color = "red"; //set the time left color to red
   } else if (currentTime <= 20) {
-    timeLeft.style.color = "yellow";
+    //if the current time is less than or equal to 20 seconds
+    timeLeft.style.color = "yellow"; // set the time left color to yellow
   } else if (currentTime <= 30) {
-    timeLeft.style.color = "green";
+    //if the current time is less than or equal to 30 seconds
+    timeLeft.style.color = "green"; // set the time left color to green
   }
 
   if (currentTime === 0) {
-    clearInterval(countDownTimerId);
-    clearInterval(timerId);
-    endGame();
+    //if the current time is 0 seconds left
+    clearInterval(countDownTimerId); //clear the countdown timer id
+    clearInterval(timerId); //clear the timer id
+    endGame(); //call the endGame function
   }
-};
-
-startGame = () => {
-  if (timerId) {
-    clearInterval(timerId);
-  }
-
-  timerId = setInterval(moveMole, 1000);
-  countDownTimerId = setInterval(countDown, 1000);
-  currentTime = 60;
-  result = 0;
-  score.textContent = result;
-  timeLeft.textContent = currentTime;
-  timeLeft.style.color = "white";
-};
-
-resetGame = () => {
-  clearInterval(countDownTimerId);
-  clearInterval(timerId);
-  currentTime = 60;
-  result = 0;
-  score.textContent = result;
-  timeLeft.textContent = currentTime;
-  timeLeft.style.color = "white";
 };
 
 endGame = () => {
+  //function to end the game
   alert("GAME OVER! Your final score is " + result);
   clearInterval(countDownTimerId);
-  clearInterval(timerId);
   resetGame();
+  moleIntervalIds.forEach((intervalId) => clearInterval(intervalId)); //clear all the mole interval IDs
+  moleIntervalIds = []; //clear the mole interval IDs array
+};
+
+resetGame = () => {
+  //function to reset the game
+  clearInterval(countDownTimerId); //clear the countdown timer id
+  clearInterval(timerId); //clear the timer id
+  currentTime = 60; //set the initial time left to 60 seconds
+  result = 0; // set the initial score to 0
+  score.textContent = result; // set the score to 0
+  timeLeft.textContent = currentTime; //set the time left to 60 seconds
+  timeLeft.style.color = "white"; //set the time left color to white
 };
 
 // Event listeners
 startbtn.addEventListener("click", startGame);
-resetbtn.addEventListener("click", resetGame);
 
 // Initial game setup
 resetGame();
