@@ -45,7 +45,7 @@ randomSquare = () => {
 
   let randomSquareIndex = Math.floor(Math.random() * 9); //generate random number from 0 to 8 (9 squares)
   let randomSquare = squares[randomSquareIndex]; //select the random square from the squares array
-  randomSquare.classList.add("mole"); //add the mole class to the random square
+  randomSquare.classList.add("mole"); //add the mole class to the random square selected
   randomSquare.addEventListener(
     "mousedown",
     (
@@ -57,7 +57,7 @@ randomSquare = () => {
 };
 
 // Function to remove mole class
-removeMoleClass = (clickedSquare) => {
+const removeMoleClass = (clickedSquare) => {
   //function to remove the mole class
   if (clickedSquare.id == hitPosition) {
     //if the clicked square id is equal to the hit position
@@ -97,12 +97,22 @@ countDown = () => {
 };
 
 endGame = () => {
-  //function to end the game
+  // Remove the mole class and event listener from all squares
+  squares.forEach((square) => {
+    square.removeEventListener("mousedown", removeMoleClass);
+    square.classList.remove("mole");
+  });
+
   alert("GAME OVER! Your final score is " + result);
   clearInterval(countDownTimerId);
+  clearInterval(timerId);
   resetGame();
-  moleIntervalIds.forEach((intervalId) => clearInterval(intervalId)); //clear all the mole interval IDs
-  moleIntervalIds = []; //clear the mole interval IDs array
+
+  // Clear all the mole interval IDs
+  moleIntervalIds.forEach((intervalId) => {
+    clearInterval(intervalId);
+  });
+  moleIntervalIds = []; // Clear the mole interval IDs array
 };
 
 resetGame = () => {
@@ -120,7 +130,7 @@ resetGame = () => {
 startbtn.addEventListener("click", startGame);
 
 // Initial game setup
-resetGame();
+resetGame(); //rename to startGame or something?
 
 // Add event listeners to squares after defining removeMoleClass
 squares.forEach((square) => {

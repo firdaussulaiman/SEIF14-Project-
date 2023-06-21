@@ -4,8 +4,27 @@ h1 {
   font-family: 'Kablammo', cursive;
 }
 
+h2 {
+  font-family: 'Londrina Shadow', cursive;
+  color:whitesmoke;
+}
+.score {
+  font-family: 'Londrina Shadow', cursive;
+  font-size: 30px;
+  color:whitesmoke;
+  margin: 0;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-color: black;
+}
+
 body {
-  background-image: url("Cartoon_grass.avif");
+  background-image: url("images/Cartoon_grass.avif");
   background-size: cover;
 }
 
@@ -22,7 +41,7 @@ body {
 }
 
 .square {
-  background-image: url("mound_Square.jpg");
+  background-image: url("images/mound_Square.jpg");
   background-size: cover;
   height: 200px;
   width: 200px;
@@ -30,17 +49,18 @@ body {
   border: solid black 1px;
   background-size: cover;
   border-spacing: 10px;
-  cursor: pointer;
+
 }
+
 
 .mole {
   display: flex;
-  background-image: url("mole.jpg");
+  background-image: url("images/Mole.jpg");
   background-size: cover;
 }
 
 .scoreBoard {
-  background-image: url("scoreBoard_background.jpg");
+  background-image: url("images/scoreBoard_background.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -59,6 +79,10 @@ body {
   display: flex;
   flex-direction: row;
 }
+
+
+
+
 
 
 /*In the .scoreBoard selector, we added the margin-left: auto; property. This pushes the .scoreBoard element to the right by setting its left margin to "auto," allowing it to occupy the available space on the left side of the container.
