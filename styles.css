@@ -7,6 +7,7 @@ h1 {
 h2 {
   font-family: 'Londrina Shadow', cursive;
   color:whitesmoke;
+  font-size: 50px;
 }
 .score {
   font-family: 'Londrina Shadow', cursive;
@@ -21,6 +22,7 @@ h2 {
   justify-content: center;
   align-items: center;
   border-color: black;
+  border-style: solid;
 }
 
 body {
@@ -90,8 +92,23 @@ body {
 
 
 
+#startbtn {
+  border: 2px solid black;
+  padding: 10px;
+  margin: 10px;
+  font-size: 20px;
+  font-family: 'Londrina Shadow', cursive;
+  font-weight: bold;
+  color:black;
+  border-radius: 50px;
+  
+}
 
-
+#startbtn:hover {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
 
 /*In the .scoreBoard selector, we added the margin-left: auto; property. This pushes the .scoreBoard element to the right by setting its left margin to "auto," allowing it to occupy the available space on the left side of the container.
 In the .container selector, we set the flex-direction property to row. This ensures that the child elements within the container are displayed in a row format.*/
