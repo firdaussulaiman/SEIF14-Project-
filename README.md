@@ -27,3 +27,11 @@ Key references
 ![image](https://github.com/firdaussulaiman/firdaussulaiman.github.io/assets/121840184/6eea3a4c-c0e8-4708-89c1-c35dc141466d)
 
 
+
+Things to improve
+
+1.Add in a TIMER Countdown App in the scoreboard
+2.Change the Pictures of Mole
+3.Highscore local storage
+
+
