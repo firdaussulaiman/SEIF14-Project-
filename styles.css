@@ -38,8 +38,12 @@ body {
   align-items: center;
   border-spacing: 60px;
   grid-template-columns: repeat(3, auto);
+  cursor: url(images/palu1.png), auto;
 }
 
+.grid:active {
+  cursor: url(images/palu2.png), auto;
+}
 .square {
   background-image: url("images/mound_Square.jpg");
   background-size: cover;
@@ -49,9 +53,13 @@ body {
   border: solid black 1px;
   background-size: cover;
   border-spacing: 10px;
-
+  position: relative;
+  transition: transform 250ms;
+  transition-timing-function: ease-out;
 }
-
+.square:hover {
+  transform: translateY(-5px);
+}
 
 .mole {
   display: flex;
