@@ -38,11 +38,11 @@ body {
   align-items: center;
   border-spacing: 60px;
   grid-template-columns: repeat(3, auto);
-  cursor: url(images/palu1.png), auto;
+  cursor: url(images/upHammer.png), auto;
 }
 
 .grid:active {
-  cursor: url(images/palu2.png), auto;
+  cursor: url(images/downHammer.png), auto;
 }
 .square {
   background-image: url("images/mound_Square.jpg");
