@@ -33,5 +33,12 @@ Things to improve
 1.Add in a TIMER Countdown App in the scoreboard
 2.Change the Pictures of Mole
 3.Highscore local storage
+4.addition of audio
+
+Challenges
+1. Unable to remove Moles on endgame after alert("GAME OVER! Your final score is " + result); Solution = in the endgame function remove the mole class and event listeners from all squares arrays.Also  Clear all the mole interval IDs
+2. Unable to move the Scoreboard Panel to the right of the site.HTML
 
 
+
+. 
